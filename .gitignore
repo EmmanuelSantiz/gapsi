@@ -1,0 +1,170 @@
+# Dependencias de Node.js
+node_modules/
+npm-debug.log
+yarn-debug.log
+yarn-error.log
+package-lock.json
+yarn.lock
+
+# Archivos de entorno
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Archivos de compilación de Angular
+/front/dist/
+/front/.angular/
+/front/.angular/cache/
+/front/tmp/
+/front/out-tsc/
+/front/bazel-out/
+
+# Archivos de compilación de Node.js
+/back/dist/
+/back/build/
+/back/out/
+
+# Archivos de IDE y editores
+.idea/
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.history/*
+
+# Archivos del sistema
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Archivos de pruebas
+/coverage/
+/front/coverage/
+/back/coverage/
+/.nyc_output
+
+# Archivos de logs
+logs
+*.log
+
+# Archivos temporales
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+
+# Archivos de configuración específicos del usuario
+.npmrc
+.yarnrc
+
+# Archivos de configuración de TypeScript
+tsconfig.tsbuildinfo
+
+# Archivos de configuración de ESLint
+.eslintcache
+
+# Archivos de configuración de Prettier
+.prettierignore
+.prettierrc
+
+# Archivos de configuración de Jest
+jest.config.js
+jest.setup.js
+
+# Archivos de configuración de Cypress
+cypress/videos/
+cypress/screenshots/
+
+# Archivos de configuración de Storybook
+/storybook-static/
+
+# Archivos de configuración de PWA
+/front/ngsw-config.json
+
+# Archivos de configuración de Firebase
+.firebase/
+.firebaserc
+firebase.json
+
+# Archivos de configuración de Vercel
+.vercel
+
+# Archivos de configuración de Netlify
+.netlify/
+
+# Archivos de configuración de Heroku
+.slugignore
+
+# Archivos de configuración de Docker
+docker-compose.override.yml
+
+# Archivos de configuración de SSL
+*.pem
+*.key
+*.crt
+*.cer
+*.der
+*.priv
+
+# Archivos de configuración de base de datos
+*.sqlite
+*.sqlite3
+*.db
+
+# Archivos de configuración de AWS
+.aws/
+
+# Archivos de configuración de Google Cloud
+.gcloud/
+
+# Archivos de configuración de Azure
+.azure/
+
+# Archivos de configuración de Kubernetes
+.kube/
+
+# Archivos de configuración de Terraform
+.terraform/
+*.tfstate
+*.tfstate.backup
+*.tfvars
+
+# Archivos de configuración de Ansible
+*.retry
+
+# Archivos de configuración de Chef
+.chef/
+
+# Archivos de configuración de Puppet
+.puppet/
+
+# Archivos de configuración de Vagrant
+.vagrant/
+
+# Archivos de configuración de Jenkins
+.jenkins/
+
+# Archivos de configuración de CircleCI
+.circleci/
+
+# Archivos de configuración de Travis CI
+.travis.yml
+
+# Archivos de configuración de GitHub Actions
+.github/workflows/
+
+# Archivos de configuración de GitLab CI
+.gitlab-ci.yml
+
+#archivos extras
+.qodo

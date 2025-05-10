@@ -11,7 +11,7 @@ import { CommonModule } from '@angular/common';
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  title = 'e-Commerc Gapsi';
+  title = 'e-Commerce Gapsi';
   pageTitle = 'Dashboard';
 
   constructor(private router: Router) {
