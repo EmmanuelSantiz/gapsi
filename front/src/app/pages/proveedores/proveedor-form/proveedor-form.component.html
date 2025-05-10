@@ -1,0 +1,109 @@
+<div class="container form-container">
+  <div class="header">
+    <img src="assets/img/icono_administracion.png" alt="Administración">
+    <h2>{{ pageTitle }}</h2>
+  </div>
+
+  <div *ngIf="loading" class="loading-indicator">
+    <span>Cargando...</span>
+  </div>
+
+  <div *ngIf="error" class="error-banner">
+    {{ error }}
+  </div>
+
+  <form [formGroup]="proveedorForm" (ngSubmit)="onSubmit()">
+    <div class="form-grid">
+      <div class="form-group">
+        <label for="nombre">Nombre*</label>
+        <input type="text" id="nombre" formControlName="nombre" placeholder="Nombre del proveedor">
+        <!--div *ngIf="submitted && f.nombre.errors" class="error-message">
+          <div *ngIf="f.nombre.errors.required">El nombre es requerido</div>
+        </div-->
+      </div>
+
+      <div class="form-group">
+        <label for="rfc">RFC*</label>
+        <input type="text" id="rfc" formControlName="rfc" placeholder="RFC del proveedor">
+        <!--div *ngIf="submitted && f.rfc.errors" class="error-message">
+          <div *ngIf="f.rfc.errors.required">El RFC es requerido</div>
+        </div-->
+      </div>
+
+      <div class="form-group">
+        <label for="razonSocial">Razón Social*</label>
+        <input type="text" id="razonSocial" formControlName="razonSocial" placeholder="Razón social del proveedor">
+        <!--div *ngIf="submitted && f.razonSocial.errors" class="error-message">
+          <div *ngIf="f.razonSocial.errors.required">La razón social es requerida</div>
+        </div-->
+      </div>
+
+      <div class="form-group">
+        <label for="contacto">Contacto*</label>
+        <input type="text" id="contacto" formControlName="contacto" placeholder="Nombre de contacto">
+        <!--div *ngIf="submitted && f.contacto.errors" class="error-message">
+          <div *ngIf="f.contacto.errors.required">El contacto es requerido</div>
+        </div-->
+      </div>
+
+      <div class="form-group">
+        <label for="correo">Correo Electrónico*</label>
+        <input type="email" id="correo" formControlName="correo" placeholder="ejemplo@correo.com">
+        <!--div *ngIf="submitted && f.correo.errors" class="error-message">
+          <div *ngIf="f.correo.errors.required">El correo es requerido</div>
+          <div *ngIf="f.correo.errors.email">Ingrese un correo válido</div>
+        </div-->
+      </div>
+
+      <div class="form-group">
+        <label for="telefono">Teléfono*</label>
+        <input type="tel" id="telefono" formControlName="telefono" placeholder="Número de teléfono">
+        <!--div *ngIf="submitted && f.telefono.errors" class="error-message">
+          <div *ngIf="f.telefono.errors.required">El teléfono es requerido</div>
+        </div-->
+      </div>
+
+      <div class="form-group full-width">
+        <label for="direccion">Dirección*</label>
+        <textarea id="direccion" formControlName="direccion" rows="3" placeholder="Dirección completa"></textarea>
+        <!--div *ngIf="submitted && f.direccion.errors" class="error-message">
+          <div *ngIf="f.direccion.errors.required">La dirección es requerida</div>
+        </div-->
+      </div>
+
+      <div class="form-group">
+        <label for="categoria">Categoría*</label>
+        <select id="categoria" formControlName="categoria">
+          <option value="">Seleccione una categoría</option>
+          <option value="Materiales">Materiales</option>
+          <option value="Servicios">Servicios</option>
+          <option value="Equipos">Equipos</option>
+          <option value="Otros">Otros</option>
+        </select>
+        <!--div *ngIf="submitted && f.categoria.errors" class="error-message"-->
+          <!--div *ngIf="f.categoria.errors.required">La categoría es requerida</div-->
+        <!--/div-->
+      </div>
+
+      <div class="form-group">
+        <label for="estado">Estado</label>
+        <select id="estado" formControlName="estado">
+          <option [ngValue]="true">Activo</option>
+          <option [ngValue]="false">Inactivo</option>
+        </select>
+      </div>
+
+      <div class="form-group full-width">
+        <label for="notas">Notas</label>
+        <textarea id="notas" formControlName="notas" rows="3" placeholder="Notas adicionales"></textarea>
+      </div>
+    </div>
+
+    <div class="form-actions">
+      <button type="button" class="btn-cancel" (click)="onCancel()">Cancelar</button>
+      <button type="submit" class="btn-submit" [disabled]="loading">
+        {{ isEditMode ? 'Actualizar' : 'Guardar' }} Proveedor
+      </button>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,83 @@
+<h1>Lista de proveedores</h1>
+
+<div class="container">
+    <div class="header">
+        <img src="assets/img/icono_administracion.png" alt="Administración">
+        <h2>Administración de Proveedores</h2>
+    </div>
+
+    <div class="actions">
+        <div class="action-button" (click)="agregarProveedor()">
+            <span class="color-indicator" style="background-color: blue;"></span> Agregar proveedor
+        </div>
+        <div class="action-button">
+            <span class="color-indicator" style="background-color: red;"></span> Imprimir listado
+        </div>
+    </div>
+
+    <!-- Mensaje de carga -->
+    <div *ngIf="loading" class="loading-indicator">
+        Cargando proveedores...
+    </div>
+
+    <!-- Mensaje de error -->
+    <div *ngIf="error" class="error-message">
+        {{ error }}
+    </div>
+
+    <!-- Tabla de proveedores -->
+    <table *ngIf="!loading && proveedores.length > 0">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>RFC</th>
+                <th>Razón Social</th>
+                <th>Dirección</th>
+                <th>Correo</th>
+                <th>Teléfono</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let proveedor of proveedores">
+                <td>{{ proveedor.nombre }}</td>
+                <td>{{ proveedor.rfc }}</td>
+                <td>{{ proveedor.razonSocial }}</td>
+                <td>{{ proveedor.direccion }}</td>
+                <td>{{ proveedor.correo }}</td>
+                <td>{{ proveedor.telefono }}</td>
+                <td class="table-actions">
+                    <button (click)="verProveedor(proveedor.id)" title="Ver detalles">👁️</button>
+                    <button (click)="editarProveedor(proveedor.id)" title="Editar">📝</button>
+                    <button (click)="eliminarProveedor(proveedor.id)" title="Eliminar">🗑️</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- Mensaje cuando no hay proveedores -->
+    <div *ngIf="!loading && proveedores.length === 0" class="no-data">
+        No hay proveedores disponibles.
+    </div>
+
+    <!-- Paginación -->
+    <div class="pagination" *ngIf="totalPages > 0">
+        <button [disabled]="currentPage === 1 || loading" (click)="goToFirstPage()" title="Primera página">&lt;&lt;</button>
+        <button [disabled]="currentPage === 1 || loading" (click)="goToPreviousPage()" title="Página anterior">&lt;</button>
+        
+        <button *ngFor="let page of getPageNumbers()" 
+                [class.current]="page === currentPage"
+                [disabled]="loading"
+                (click)="goToPage(page)">
+            {{ page }}
+        </button>
+        
+        <button [disabled]="currentPage === totalPages || loading" (click)="goToNextPage()" title="Página siguiente">&gt;</button>
+        <button [disabled]="currentPage === totalPages || loading" (click)="goToLastPage()" title="Última página">&gt;&gt;</button>
+    </div>
+
+    <!-- Información de paginación -->
+    <div class="pagination-info" *ngIf="totalItems > 0">
+        Mostrando {{ (currentPage - 1) * itemsPerPage + 1 }} - {{ currentPage * itemsPerPage > totalItems ? totalItems : currentPage * itemsPerPage }} de {{ totalItems }} proveedores
+    </div>
+</div>

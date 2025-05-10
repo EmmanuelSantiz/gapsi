@@ -1,0 +1,54 @@
+[
+  {
+    "name": "Cementos",
+    "companyName": "Cementos SA de CV",
+    "contact": "",
+    "email": "test@test.com",
+    "phone": "+52 967 100 9090",
+    "address": "Calle Aries #48",
+    "category": "Construccion",
+    "rfc": "SAFE901123J56",
+    "notes": "Esta es una nota",
+    "createdAt": "2025-05-10T20:24:46.178Z",
+    "id": 1
+  },
+  {
+    "name": "Ferreteria",
+    "companyName": "Ferreteria SA de CV",
+    "contact": "",
+    "email": "test@test.com",
+    "phone": "+52 967 100 9000",
+    "address": "Calle Aries #48",
+    "category": "Construccion",
+    "rfc": "SAFE901123J45",
+    "notes": "Esta es una nota 2",
+    "createdAt": "2025-05-10T21:15:09.940Z",
+    "id": 2
+  },
+  {
+    "name": "Tienda",
+    "companyName": "Tienda SA de CV",
+    "contact": "",
+    "email": "test2@test.com",
+    "phone": "+52 947 100 9000",
+    "address": "Calle Aries #48",
+    "category": "Construccion 2",
+    "rfc": "FAFE901123J45",
+    "createdAt": "2025-05-10T21:15:31.230Z",
+    "id": 3
+  },
+  {
+    "name": "Oxxo",
+    "companyName": "Oxxo Sa de Cv",
+    "contact": "hola",
+    "email": "test@ejemplo.com",
+    "phone": "9671032677",
+    "address": "asa",
+    "category": "Materiales",
+    "rfc": "oxxo923923932",
+    "status": true,
+    "notes": "nota",
+    "createdAt": "2025-05-10T22:45:54.334Z",
+    "id": 4
+  }
+]
