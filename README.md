@@ -125,7 +125,7 @@ Para más detalles sobre cada parte del proyecto, consulte los README específic
 
 ## Equipo de Desarrollo
 
-Este proyecto fue desarrollado por el equipo de ingeniería de Gapsi e-Commerce.
+Este proyecto fue desarrollado Emmanuel Santis para una prueba o ejecicion tecnico para Gapsi.
 
 ## Licencia
 
