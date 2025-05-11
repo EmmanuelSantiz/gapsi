@@ -114,10 +114,14 @@ Para más detalles sobre cada parte del proyecto, consulte los README específic
 ## Capturas de Pantalla
 
 ### Listado de Proveedores
-![Listado de Proveedores](https://via.placeholder.com/800x400?text=Listado+de+Proveedores)
+![Listado de Proveedores](./listaProveedores.png)
 
 ### Formulario de Proveedor
-![Formulario de Proveedor](https://via.placeholder.com/800x400?text=Formulario+de+Proveedor)
+![Formulario de Proveedor](./formulario.png)
+
+
+### Documentacion Swagger (OpenApi)
+![Formulario de Proveedor](./apiSwagger.png)
 
 ## Equipo de Desarrollo
 
