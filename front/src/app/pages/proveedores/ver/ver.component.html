@@ -1,0 +1,78 @@
+<div class="container mx-auto p-4">
+  <div class="bg-white shadow-md rounded-lg p-6">
+    <h1 class="text-2xl font-bold mb-6 text-gray-800">Detalles del Proveedor</h1>
+    
+    <!-- Mensaje de carga -->
+    <div *ngIf="loading" class="flex justify-center items-center py-8">
+      <div class="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
+    </div>
+    
+    <!-- Mensaje de error -->
+    <div *ngIf="error" class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
+      {{ error }}
+    </div>
+    
+    <!-- Detalles del proveedor -->
+    <div *ngIf="proveedor && !loading" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div class="space-y-4">
+        <div>
+          <h2 class="text-lg font-semibold text-gray-700">Información General</h2>
+          <div class="mt-2 border-t pt-2">
+            <p class="mb-2"><span class="font-medium">Nombre:</span> {{ proveedor.nombre }}</p>
+            <p class="mb-2"><span class="font-medium">Razón Social:</span> {{ proveedor.razonSocial || 'No especificado' }}</p>
+            <p class="mb-2"><span class="font-medium">RFC:</span> {{ proveedor.rfc }}</p>
+            <p class="mb-2"><span class="font-medium">Categoría:</span> {{ proveedor.categoria || 'No especificado' }}</p>
+            <p class="mb-2"><span class="font-medium">Estado:</span> 
+              <span [ngClass]="proveedor.estado ? 'text-green-600' : 'text-red-600'">
+                {{ proveedor.estado ? 'Activo' : 'Inactivo' }}
+              </span>
+            </p>
+            <p class="mb-2"><span class="font-medium">Fecha de Registro:</span> {{ proveedor.fechaRegistro | date:'dd/MM/yyyy' }}</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="space-y-4">
+        <div>
+          <h2 class="text-lg font-semibold text-gray-700">Contacto</h2>
+          <div class="mt-2 border-t pt-2">
+            <p class="mb-2"><span class="font-medium">Persona de Contacto:</span> {{ proveedor.contacto }}</p>
+            <p class="mb-2"><span class="font-medium">Correo:</span> {{ proveedor.correo || 'No especificado' }}</p>
+            <p class="mb-2"><span class="font-medium">Teléfono:</span> {{ proveedor.telefono }}</p>
+            <p class="mb-2"><span class="font-medium">Dirección:</span> {{ proveedor.direccion || 'No especificado' }}</p>
+          </div>
+        </div>
+        
+        <div *ngIf="proveedor.notas">
+          <h2 class="text-lg font-semibold text-gray-700">Notas</h2>
+          <div class="mt-2 border-t pt-2">
+            <p class="whitespace-pre-line">{{ proveedor.notas }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Botones de acción -->
+    <div class="flex justify-between mt-8">
+      <button 
+        (click)="volver()" 
+        class="bg-gray-500 hover:bg-gray-600 text-white py-2 px-4 rounded">
+        Volver
+      </button>
+      
+      <div *ngIf="proveedor && !loading" class="space-x-2">
+        <button 
+          (click)="editar()" 
+          class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded">
+          Editar
+        </button>
+        <button 
+          (click)="eliminar()" 
+          class="bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded">
+          Eliminar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+</qodoArtifact>

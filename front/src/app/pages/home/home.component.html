@@ -6,18 +6,18 @@
   
     <div style="display: flex; flex-direction: column; align-items: center; margin-bottom: 30px;">
       <div style="width: 100px; height: 100px; border-radius: 50%; overflow: hidden; margin-bottom: 20px; border: 2px solid #007bff;">
-        <img src="URL_DEL_LOGO" alt="Logo Apsi" style="width: 100%; height: 100%; object-fit: cover;">
+        <img src="{{ welcomedata.img }}" alt="Logo Apsi" style="width: 100%; height: 100%; object-fit: cover;">
       </div>
-      <h2 style="margin-top: 0; color: #333;">Bienvenido Candidato 01</h2>
+      <h2 style="margin-top: 0; color: #333;">{{ welcomedata.message }}</h2>
     </div>
   
-    <button class="continue-button" routerLink="/proveedores">
+    <button style="background-color: #007bff; color: white; border: none; padding: 10px 20px; border-radius: 5px; font-size: 16px; cursor: pointer; margin-bottom: auto;" routerLink="/proveedores">
         Continuar
     </button>
   
     <div style="width: 100%; display: flex; justify-content: space-between; align-items: center; margin-top: 30px; color: #777; font-size: 0.8em;">
       <div style="border-bottom: 1px solid #ccc; flex-grow: 1; margin-right: 10px;"></div>
-      <span>versión 0.0.1</span>
+      <span>{{ welcomedata.verson }}</span>
     </div>
   </div>
 

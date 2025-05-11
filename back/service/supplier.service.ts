@@ -120,17 +120,59 @@ class SupplierService {
         }
     }
 
+    /**
+     * Actualiza un proveedor existente en la base de datos
+     * @param id ID del proveedor a actualizar
+     * @param dto Datos actualizados del proveedor
+     * @returns Objeto con estatus del resultado y data del proveedor actualizado
+     */
     async update(id: number, dto: ProveedorDTO) {
-        /*try {
-          const supplier: Suppliers = this.mapToModel(dto);
-          const updated = await this.supplierRepository.update(id, supplier);
-          if (!updated) {
-            return { result: false, message: 'Proveedor no encontrado' };
-          }
-          return { result: true, data: this.mapToResponseDTO(updated) };
+        try {
+            // Verificar si el proveedor existe
+            const existingSupplier = await this.supplierRepository.findById(id);
+            if (!existingSupplier) {
+                return { 
+                    result: false, 
+                    message: 'Proveedor no encontrado' 
+                };
+            }
+
+            // Si se está cambiando el nombre, verificar que no exista otro proveedor con ese nombre
+            if (dto.nombre !== existingSupplier.name) {
+                const nameExists = await this.findByName(dto.nombre);
+                if (nameExists.result && nameExists.data.length > 0 && 
+                    nameExists.data.some((p: ProveedorDTO) => p.id !== id)) {
+                    return {
+                        result: false,
+                        message: 'Ya existe un proveedor con ese nombre'
+                    };
+                }
+            }
+
+            // Crear objeto Suppliers con los datos actualizados
+            const supplier = new Suppliers(dto);
+            supplier.id = id; // Asegurar que el ID se mantiene
+
+            // Actualizar en el repositorio
+            const updated = await this.supplierRepository.update(id, supplier);
+            if (!updated) {
+                return { 
+                    result: false, 
+                    message: 'Error al actualizar el proveedor' 
+                };
+            }
+
+            return { 
+                result: true, 
+                data: this.mapToResponseDTO(updated) 
+            };
         } catch (error: any) {
-          return { result: false, data: error.message };
-        }*/
+            console.error('Error en update:', error);
+            return { 
+                result: false, 
+                message: error.message || 'Error al actualizar el proveedor' 
+            };
+        }
     }
     
     async delete(id: number) {

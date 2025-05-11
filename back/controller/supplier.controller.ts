@@ -28,7 +28,7 @@ export const getAllSuppliers = async (req: Request, res: Response): Promise<void
         const supplierService = new SupplierService(supplierRepo);
 
         const response = await supplierService.findAll();
-
+        console.log(response);
         if (response.result) {
             rsp.success = true;
             rsp.message = '';
@@ -152,17 +152,18 @@ export const getSupplierById = async (req: Request, res: Response): Promise<void
         const supplierService = new SupplierService(supplierRepo);
         
         const result = await supplierService.getById(id);
-        if (result.result) {
-            rsp.success = true;
-            rsp.message = 'Proveedor encontrado';
-            rsp.data = result.data || null;
-            res.status(Constantes.STATUS_CODES.OK).json(rsp);
-        } else {
+        if (!result.result) {
             rsp.success = false;
             rsp.message = 'Error al obtener el proveedor';
             rsp.data = null;
             res.status(Constantes.STATUS_CODES.BAD_REQUEST).json(rsp);
+            return;
         }
+
+        rsp.success = true;
+        rsp.message = 'Proveedor encontrado';
+        rsp.data = result.data || null;
+        res.status(Constantes.STATUS_CODES.OK).json(rsp);
     } catch (error: any) {
         console.error('Error en el controlador supplier.getSupplierById:', error);
 
@@ -219,10 +220,63 @@ export const deleteSupplierById = async (req: Request, res: Response): Promise<v
     }
 };
 
+    /**
+     * Actualiza un proveedor existente
+     */
+export const updateSupplier = async (req: Request, res: Response): Promise<void> => {
+    const rsp = createResponse();
+    try {
+        // Verificar si el body está vacío
+        if (!req.params || Object.keys(req.params).length === 0) {
+            console.warn('ALERTA: req.query está vacío o undefined');
+            rsp.success = false;
+            rsp.message = 'El query de la petición está vacío';
+            res.status(Constantes.STATUS_CODES.BAD_REQUEST).json(rsp);
+            return;
+        }
+
+        const id = parseInt(req.params.id);
+        
+        if (isNaN(id)) {
+            console.warn('Validación fallida: id requerido faltante');
+            rsp.success = false;
+            rsp.message = Constantes.ERROR_CUSTOM_MESSAGES.REQUERIDOS;
+            res.status(Constantes.STATUS_CODES.BAD_REQUEST).json(rsp);
+            return;
+        }
+
+        const db = new DataBase();
+        const supplierRepo = new SupplierRepository(db);
+        const supplierService = new SupplierService(supplierRepo);
+
+        const proveedorDTO: ProveedorDTO = req.body;
+        const result = await supplierService.update(id, proveedorDTO);
+        
+        if (!result.result) {
+            rsp.success = false;
+            rsp.message = 'Error al obtener el proveedor';
+            rsp.data = null;
+            res.status(Constantes.STATUS_CODES.BAD_REQUEST).json(rsp);
+            return;
+        }
+        
+        rsp.success = true;
+        rsp.message = 'Proveedor encontrado';
+        rsp.data = result.data || null;
+        res.status(Constantes.STATUS_CODES.OK).json(rsp);
+    } catch (error) {
+        console.error('Error en update controller:', error);
+        rsp.success = false;
+        rsp.message = Constantes.MESSAGES.INTERNAL_SERVER_ERROR;
+        res.status(Constantes.STATUS_CODES.INTERNAL_SERVER_ERROR).json(rsp);
+    }
+}
+
 // Exportar todas las funciones del controlador
 export default {
     getAllSuppliers,
     createSupplier,
     getSupplierById,
-    deleteSupplierById
+    deleteSupplierById,
+    updateSupplier
 };

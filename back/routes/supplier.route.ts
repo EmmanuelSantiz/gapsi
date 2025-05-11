@@ -3,8 +3,9 @@ import {
     getAllSuppliers, 
     createSupplier, 
     getSupplierById, 
-    deleteSupplierById
- } from '../controller/supplier.controller';
+    deleteSupplierById, 
+    updateSupplier
+} from '../controller/supplier.controller';
 import { Constantes } from '../utils/constantes';
 
 const router = Router();
@@ -13,7 +14,7 @@ const router = Router();
 router.get(Constantes.NOT_ROUTE, getAllSuppliers);
 router.post(Constantes.NOT_ROUTE, createSupplier);
 router.get(Constantes.BY_ID, getSupplierById);
-//router.put(Constantes.BY_ID, getAllSuppliers);
+router.put(Constantes.BY_ID, updateSupplier);
 router.delete(Constantes.BY_ID, deleteSupplierById);
 
 export default router;

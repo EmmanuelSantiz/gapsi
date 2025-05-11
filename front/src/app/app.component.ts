@@ -15,7 +15,7 @@ export class AppComponent {
   pageTitle = 'Dashboard';
 
   constructor(private router: Router) {
-    this.router.events.pipe(
+    /*this.router.events.pipe(
       filter(event => event instanceof NavigationEnd)
     ).subscribe((event: any) => {
       // Actualizar el título de la página según la ruta
@@ -25,7 +25,7 @@ export class AppComponent {
       } else if (routePath.includes('/proveedores')) {
         this.pageTitle = 'Proveedores';
       }
-    });
+    });*/
   }
 
   // Método para navegar programáticamente (opcional)

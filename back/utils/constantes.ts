@@ -10,7 +10,7 @@ export class Constantes {
 
     // Home routes
     static readonly HOME = {
-        BASE: `${Constantes.BASE_ROUTE}/home`,
+        BASE: `${Constantes.BASE_ROUTE}/dashboard`,
     };
     
     // Suppliers routes

@@ -10,7 +10,7 @@ export class HomeService {
     private readonly http: HttpClient = inject(HttpClient);
 
     private URI: string = "http://localhost:3000/api/v1";
-    private apiUrl = `${this.URI}/home`;
+    private apiUrl = `${this.URI}/dashboard`;
   
     constructor() { }
 

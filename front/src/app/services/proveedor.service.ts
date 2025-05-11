@@ -44,8 +44,8 @@ export class ProveedorService {
      * @param id ID del proveedor
      * @returns Observable con los datos del proveedor
      */
-    getById(id: number): Observable<Proveedor> {
-        return this.http.get<Proveedor>(`${this.apiUrl}/${id}`, this.httpOptions);
+    getById(id: number): Observable<any> {
+        return this.http.get<any>(`${this.apiUrl}/${id}`, this.httpOptions);
     }
     
     /**

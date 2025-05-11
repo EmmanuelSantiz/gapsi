@@ -8,6 +8,7 @@ import { Proveedor } from '../../../models/proveedor.model';
 @Component({
   selector: 'app-proveedor-form',
   templateUrl: './proveedor-form.component.html',
+  styleUrl: './proveedor-form.component.scss',
   //styleUrl: './proveedor-form.component.css',
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule]
@@ -20,6 +21,19 @@ export class ProveedorFormComponent implements OnInit {
   isEditMode = false;
   proveedorId: number | null = null;
   pageTitle = 'Agregar Nuevo Proveedor';
+  proveedor: Proveedor = {
+    id: null,
+    nombre: '',
+    razonSocial: null,
+    contacto: '',
+    correo: null,
+    telefono: '',
+    direccion: null,
+    categoria: null,
+    rfc: '',
+    estado: true,
+    notas: ''
+  };
 
   constructor(
     private formBuilder: FormBuilder,
@@ -27,7 +41,11 @@ export class ProveedorFormComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute
   ) {
-    this.proveedorForm = this.formBuilder.group({
+    this.proveedorForm = this.createForm();
+  }
+
+  createForm(): FormGroup {
+    return this.formBuilder.group({
       nombre: ['', Validators.required],
       razonSocial: ['', Validators.required],
       contacto: ['', Validators.required],
@@ -48,32 +66,37 @@ export class ProveedorFormComponent implements OnInit {
         this.isEditMode = true;
         this.proveedorId = +params['id'];
         this.pageTitle = 'Editar Proveedor';
-        this.loadProveedorData(this.proveedorId);
+        this.loadProveedorData();
       }
     });
   }
 
   // Cargar datos del proveedor para edición
-  loadProveedorData(id: number): void {
+  loadProveedorData(): void {
+    if (!this.proveedorId) return;
+    
     this.loading = true;
-    this.proveedorService.getById(id).subscribe({
+    this.proveedorService.getById(this.proveedorId).subscribe({
       next: (proveedor) => {
+        console.log(proveedor)
+        this.proveedor = proveedor.data;
         this.proveedorForm.patchValue({
-          nombre: proveedor.nombre,
-          razonSocial: proveedor.razonSocial,
-          contacto: proveedor.contacto,
-          correo: proveedor.correo,
-          telefono: proveedor.telefono,
-          direccion: proveedor.direccion,
-          categoria: proveedor.categoria,
-          rfc: proveedor.rfc,
-          estado: proveedor.estado,
-          notas: proveedor.notas
+          nombre: proveedor.data.nombre,
+          razonSocial: proveedor.data.razonSocial,
+          contacto: proveedor.data.contacto,
+          correo: proveedor.data.correo,
+          telefono: proveedor.data.telefono,
+          direccion: proveedor.data.direccion,
+          categoria: proveedor.data.categoria,
+          rfc: proveedor.data.rfc,
+          estado: proveedor.data.estado,
+          notas: proveedor.data.notas
         });
         this.loading = false;
       },
       error: (error) => {
         this.error = 'Error al cargar los datos del proveedor: ' + error.message;
+        console.error('Error loading provider data:', error);
         this.loading = false;
       }
     });
@@ -87,6 +110,11 @@ export class ProveedorFormComponent implements OnInit {
 
     // Detener si el formulario es inválido
     if (this.proveedorForm.invalid) {
+      // Mark all fields as touched to trigger validation messages
+      Object.keys(this.proveedorForm.controls).forEach(key => {
+        const control = this.proveedorForm.get(key);
+        control?.markAsTouched();
+      });
       return;
     }
 
@@ -103,6 +131,7 @@ export class ProveedorFormComponent implements OnInit {
           },
           error: (error) => {
             this.error = 'Error al actualizar el proveedor: ' + error.message;
+            console.error('Error updating provider:', error);
             this.loading = false;
           }
         });
@@ -116,6 +145,7 @@ export class ProveedorFormComponent implements OnInit {
           },
           error: (error) => {
             this.error = 'Error al guardar el proveedor: ' + error.message;
+            console.error('Error creating provider:', error);
             this.loading = false;
           }
         });

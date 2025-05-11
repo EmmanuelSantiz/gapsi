@@ -17,7 +17,7 @@ const createResponse = (): CustomResponse => ({
  * @description Esta funcion regresa un mensaje de bienvenida en formato JSON.
  * @throws { Error } Si un error ocurre al consultar mensaje
  */
-export const welcomne = async (req: Request, res: Response): Promise<void> => {
+export const Welcomne = async (req: Request, res: Response): Promise<void> => {
     const rsp = createResponse();
     try {
 
@@ -44,5 +44,5 @@ export const welcomne = async (req: Request, res: Response): Promise<void> => {
 
 // Exportar todas las funciones del controlador
 export default {
-    welcomne,
+    Welcomne,
 };

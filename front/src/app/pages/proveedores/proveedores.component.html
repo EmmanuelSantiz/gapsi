@@ -2,7 +2,7 @@
 
 <div class="container">
     <div class="header">
-        <img src="assets/img/icono_administracion.png" alt="Administración">
+        <img src="./assets/logo.png" alt="Administración">
         <h2>Administración de Proveedores</h2>
     </div>
 
@@ -47,7 +47,7 @@
                 <td>{{ proveedor.correo }}</td>
                 <td>{{ proveedor.telefono }}</td>
                 <td class="table-actions">
-                    <button (click)="verProveedor(proveedor.id)" title="Ver detalles">👁️</button>
+                    <!--button (click)="verProveedor(proveedor.id)" title="Ver detalles">👁️</button-->
                     <button (click)="editarProveedor(proveedor.id)" title="Editar">📝</button>
                     <button (click)="eliminarProveedor(proveedor.id)" title="Eliminar">🗑️</button>
                 </td>

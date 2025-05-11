@@ -3,9 +3,9 @@ import { Constantes } from "../utils/constantes";
 class HomeService {
     async welcome() {
         return {
-            result: false,
+            result: true,
             data: {
-                img: 'ruta/de/la/img',
+                img: './assets/logo.png',
                 message: 'Bienvenido Candidato 01',
                 verson: Constantes.APP_VERSION
             }
